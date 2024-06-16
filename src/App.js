@@ -1,25 +1,36 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import './App.css';
+import authService from './appwrite/auth';
+import { login,logout } from './store/auth';
+import Footer from './components/Footer/Footer';
+import Header from './components/Header/Header';
+import  { Outlet } from 'react-router-dom';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+  const [loading,setLoading] = useState(true)
+  const dispatch = useDispatch()
+
+  useEffect(()=> {
+    authService.getCurrentUser()
+    .then((userData)=>{
+      if(userData){
+        dispatch(login({userData}))
+      }else{
+        dispatch(logout())
+      }
+    })
+    .finally(() => setLoading(false))
+  })
+  //conditional rendring 
+  return !loading  ? (
+    <>
+    <Header/>
+    <Outlet/>
+    <Footer/>
+    </>
+  ) : null
 }
 
 export default App;
