@@ -132,7 +132,7 @@ export class Service{
 
     async filePreview(fileId){
         try {
-             return await this.bucket.getFilePreview(
+             return  this.bucket.getFilePreview(
                 Config.appwriteBucketId,
                 fileId,
              )

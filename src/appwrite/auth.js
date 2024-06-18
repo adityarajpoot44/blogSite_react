@@ -29,11 +29,11 @@ export class AuthService{
     }
 
     async login ({email,password}){
-           try {
+        try {
             await this.account.createEmailSession(email,password);
-           } catch (error) {
+        } catch (error) {
             return error;
-           }
+        }
     }
 
     async getCurrentUser(){
@@ -48,7 +48,7 @@ export class AuthService{
         try{
             return await this.account.deleteSessions();
         }catch(error){
-            return 
+            return error;
         }
     }
 }
