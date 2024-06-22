@@ -3,36 +3,39 @@ import { Client, Account, ID } from "appwrite";
 
 export class AuthService{
 
-    client = new Client()
+    client = new Client();
     account;
     
-    constructor(){
+    constructor() {
         this.client
-        .setEndpoint(Config.appwriteUrl) 
-        .setProject(Config.appwriteProjectId);
-
+            .setEndpoint(Config.appwriteUrl)
+            .setProject(Config.appwriteProjectId);
         this.account = new Account(this.client);
     }
 
-    async createAccout({email, password, name}){
+    async createAccount({email, password, name}) {
         try {
-           const useraccount =  await this.account.create(ID.unique(),email,password,name);
-           if(useraccount){
-                //call other method;
-                return this.login({email,password});
-           }else{
-            return useraccount;
-           }
+            const userAccount = await this.account.create(ID.unique(), email, password, name);
+            if (userAccount) {
+                // call another method
+                console.log("account created sucessfully",userAccount)
+                 return  alert("account created sucessfully")
+                //this.login({email, password});
+            } else {
+               return  userAccount;
+            }
         } catch (error) {
-            throw error;
+            console.log("Appwrite serive :: creat Account  :: error", error);
+
         }
     }
 
-    async login ({email,password}){
+    async login({email, password}) {
         try {
-            await this.account.createEmailSession(email,password);
+            return await this.account.createEmailPasswordSession(email, password);
         } catch (error) {
-            return error;
+            console.log("Appwrite serive :: login :: error", error);
+
         }
     }
 
@@ -40,15 +43,18 @@ export class AuthService{
         try {
             return  await this.account.get();
         } catch (error) { 
-            return error;
+            console.log("Appwrite serive :: getCurrentUser1 :: error", error);
         }
+
+        return null;
     }
 
-    async logout(){
-        try{
-            return await this.account.deleteSessions();
-        }catch(error){
-            return error;
+    async logout() {
+
+        try {
+            await this.account.deleteSessions();
+        } catch (error) {
+            console.log("Appwrite serive :: logout :: error", error);
         }
     }
 }

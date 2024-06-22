@@ -9,7 +9,7 @@ import service from '../../appwrite/config'
 import { useNavigate } from "react-router-dom";
 import {useSelector} from 'react-redux';
 
-function PostForm(post){
+export default function PostForm({ post }) {
     const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
         defaultValues: {
             title: post?.title || "",
@@ -17,7 +17,7 @@ function PostForm(post){
             content: post?.content || "",
             status: post?.status || "active",
         },
-    })
+    });
 
     const navigate = useNavigate();
     const userData = useSelector((state) => state.auth.userData);
@@ -58,13 +58,13 @@ function PostForm(post){
             return value
                 .trim()
                 .toLowerCase()
-                .replace(/^[a-zA-Z\d\s]+/g, "-")
+                .replace(/[^a-zA-Z\d\s]+/g, "-")
                 .replace(/\s/g, "-");
 
         return "";
     }, []);
 
-    useEffect(() => {
+    React.useEffect(() => {
         const subscription = watch((value, { name }) => {
             if (name === "title") {
                 setValue("slug", slugTransform(value.title), { shouldValidate: true });
@@ -75,7 +75,7 @@ function PostForm(post){
     }, [watch, slugTransform, setValue]);
 
     return (
-        <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
+        <form onSubmit={handleSubmit(submit)} className="flex text-white glass flex-wrap">
             <div className="w-2/3 px-2">
                 <Input
                     label="Title :"
@@ -105,7 +105,7 @@ function PostForm(post){
                 {post && (
                     <div className="w-full mb-4">
                         <img
-                            src={service.filePreview(post.featuredImage)}
+                            src={service.getFilePreview(post.featuredImage)}
                             alt={post.title}
                             className="rounded-lg"
                         />
@@ -124,5 +124,3 @@ function PostForm(post){
         </form>
     );
 }
-
-export default PostForm;

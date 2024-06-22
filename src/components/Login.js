@@ -29,31 +29,27 @@ function Login() {
   };
 
   return (
-    <div className="flex items-center justify-center w-full">
-      <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
-        <div className="mb-2 flex justify-center">
+    <div className="flex items-center h-screen justify-center w-full">
+      <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+      </div>
+      <div className={`form mt-[22px]`} >
+        <div className="mb-2 flex justify-center ">
           <span className="inline-block w-full max-w-[100px]">
             <Logo width="100%" />
           </span>
         </div>
-        <h2 className="text-center text-2xl font-bold leading-tight">
+        <h2 className="text-center text-2xl font-bold mt-5 leading-tight">
           Sign in to your account
         </h2>
-        <p className="mt-2 text-center text-base text-black/60">
-          Don&apos;t have any account?&nbsp;
-          <Link
-            to="/signup"
-            className="font-medium text-primary transition-all duration-200 hover:underline"
-          >
-            Sign Up
-          </Link>
-        </p>
+        
         {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
         <form onSubmit={handleSubmit(login)} className="mt-8">
           <div className="space-y-5">
             <Input
               label="Email: "
-              placeholder="Enter your email"
+              placeholder="Enter Email"
               type="email"
               {...register("email", {
                 required: true,
@@ -67,7 +63,7 @@ function Login() {
             <Input
               label="Password: "
               type="password"
-              placeholder="Enter your password"
+              placeholder="Password"
               {...register("password", {
                 required: true,
               })}
@@ -75,6 +71,15 @@ function Login() {
             <Button type="submit" className="w-full">
               Sign in
             </Button>
+            <p className="mt-2 text-center text-base text-gray-700">
+          Don&apos;t have any account?&nbsp;
+          <Link
+            to="/signup"
+            className="font-medium text-primary transition-all duration-200 hover:underline"
+          >
+            Sign Up
+          </Link>
+        </p>
           </div>
         </form>
       </div>
