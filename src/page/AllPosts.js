@@ -6,7 +6,7 @@ import PostCard from "../components/PostCard";
 
 export default function AllPost() {
   const [posts, setPosts] = useState([]);
-  useEffect((posts) => {
+  useEffect(() => {
     service.getPost([]).then((posts) => {
       if (posts) {
         setPosts(posts.documents);
@@ -15,7 +15,7 @@ export default function AllPost() {
   }, []);
 
   return (
-    <div className="w-full h-[60vh] py-8">
+    <div className="w-full min-h-screen py-8">
       <Container>
         <div className="flex flex-wrap">
           {posts.map((post) => (

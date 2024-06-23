@@ -5,7 +5,7 @@ import Logo from "../Logo";
 function Footer() {
   return (
     <>
-    <section className=" glass mt-10">
+    <section className=" glass h-[31.5vh] pt-6 mt-10">
       <div class="background_footer ">
         <div class="shape_footer blur"></div>
         <div class="shape_footer blur"></div>
@@ -15,7 +15,7 @@ function Footer() {
           <div className="w-full p-6 md:w-1/2 lg:w-5/12">
             <div className="flex h-full flex-col justify-between">
               <div className="mb-4 inline-flex items-center mt-[10px]">
-                <Logo width="w-[60px]" />
+                <Logo width="w-[60px]"/>
               </div>
               <div>
                 <p className="text-sm text-gray-600">

@@ -1,12 +1,12 @@
 import React from 'react';
 
 const Logo = ({ 
-    width ,
+    width
  }) => {
   return (
     <div>
       <img
-        className={`${width}`}
+        className={`${width} `}
         src={require('../assset/logoimg.png')}
         alt="Logo"
       />

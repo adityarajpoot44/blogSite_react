@@ -99,15 +99,17 @@ export class Service{
 
     async uploadFile(file){
         try {
-            await this.bucket.createFile(
+
+            const data = await this.bucket.createFile(
                 Config.appwriteBucketId,
                 ID.unique(),
                 file
             )
-            return console.log("created file")
+            console.log ("file created");
+            return data;
 
         } catch (error) {
-            console.log("Appwrite Serive :: uploadFile :: error", error);
+            console.log("Appwrite Serive :: uploadFile :: error",error);
             return false
         }
     }

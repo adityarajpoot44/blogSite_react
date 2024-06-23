@@ -3,7 +3,6 @@ import RTE from "../RTE";
 import Button from '../Button'
 import Select from '../Select'
 import Input from '../input'
-
 import { useForm } from "react-hook-form";
 import service from '../../appwrite/config'
 import { useNavigate } from "react-router-dom";
@@ -20,9 +19,9 @@ export default function PostForm({ post }) {
     });
 
     const navigate = useNavigate();
-    const userData = useSelector((state) => state.auth.userData);
+    const userData = useSelector( (state) => state.auth.userData );
 
-    const submit = async (data) => {
+    const onSubmit = async (data) => {
         if (post) {
             const file = data.image[0] ? await service.uploadFile(data.image[0]) : null;
 
@@ -40,6 +39,7 @@ export default function PostForm({ post }) {
             }
         } else {
             const file = await service.uploadFile(data.image[0]);
+            console.log(data);
 
             if (file) {
                 const fileId = file.$id;
@@ -75,7 +75,7 @@ export default function PostForm({ post }) {
     }, [watch, slugTransform, setValue]);
 
     return (
-        <form onSubmit={handleSubmit(submit)} className="flex text-white glass flex-wrap">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex text-white glass flex-wrap">
             <div className="w-2/3 px-2">
                 <Input
                     label="Title :"
@@ -117,8 +117,8 @@ export default function PostForm({ post }) {
                     className="mb-4"
                     {...register("status", { required: true })}
                 />
-                <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">
-                    {post ? "Update" : "Submit"}
+                <Button children = {post ? "Update" : "Submit"}  type="submit" className="w-full">
+                    
                 </Button>
             </div>
         </form>

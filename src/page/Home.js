@@ -8,7 +8,7 @@ function Home() {
     const [posts, setPosts] = useState([])
 
     useEffect(() => {
-        service.getPost().then((posts) => {
+        service.getPosts().then((posts) => {
             if (posts) {
                 setPosts(posts.documents)
             }
@@ -31,13 +31,12 @@ function Home() {
         )
     }
     return (
-        <div className='w-full py-8'>
+        <div className='w-full min-h-screen py-8'>
             <Container>
                 <div className='flex flex-wrap'>
                     {posts.map((post) => (
                         <div key={post.$id} className='p-2 w-1/4'>
                             <PostCard {...post} />
-                            
                         </div>
                     ))}
                     
