@@ -2,7 +2,7 @@ import React from "react";
 import Container from "../Container/Container";
 import Logo from "../Logo";
 import LogoutBtn from "./LogoutBtn";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 

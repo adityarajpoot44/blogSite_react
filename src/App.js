@@ -21,7 +21,7 @@ function App() {
       }
     })
     .finally(() => setLoading(false))
-  }, [])
+  })
   // conditional rendring 
   return !loading  ? (
     <>

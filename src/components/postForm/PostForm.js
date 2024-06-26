@@ -75,7 +75,7 @@ export default function PostForm({ post }) {
     }, [watch, slugTransform, setValue]);
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="flex text-white glass flex-wrap">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex text-white glass p-4 flex-wrap">
             <div className="w-2/3 px-2">
                 <Input
                     label="Title :"
