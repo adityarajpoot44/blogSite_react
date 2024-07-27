@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import service from "../appwrite/config";
-import Container from "../components/Container/Container";
+import Container from '../components/container/Container';
 import PostCard from "../components/PostCard";
 
 export default function AllPost() {
