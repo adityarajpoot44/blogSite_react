@@ -13,6 +13,7 @@ function Login() {
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
   const [error, setError] = useState("");
+  const [details, setdetails] = useState(false);
 
   const login = async (data) => {
     setError("");
@@ -82,7 +83,16 @@ function Login() {
         </p>
           </div>
         </form>
+        <div onMouseEnter={()=>setdetails(true)} onMouseOut={()=>setdetails(false)} className="absolute top-2 right-3">
+          <p className="cursor-pointer">&#x24D8;</p>
       </div>
+      {details && 
+      <div className="absolute bg-white text-black top-6 right-6 p-4 rounded-xl">
+              <p>username: admin@gmail.com<br/>
+              password: admin123</p>
+      </div>}
+      </div>
+      
     </div>
   );
 }
